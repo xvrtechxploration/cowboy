@@ -1,0 +1,136 @@
+#!/usr/bin/env bash
+# bootstrap
+# Cowboy app project launcher
+
+SKILLS_DIR="$HOME/dev/cowboy"
+TEMPLATE_DIR="$SKILLS_DIR/_template"
+VAULT_DIR="$HOME/xvr-vault/dev"
+WS4_LAUNCHER="$HOME/dev/scripts/workspace-launchers/code.sh"
+
+new_project() {
+
+    NAME="$1"
+
+    if [ -z "$NAME" ]; then
+        echo "Usage: bootstrap new <project-name>"
+        exit 1
+    fi
+
+    PROJECT_DIR="$SKILLS_DIR/$NAME"
+    NOTE="$VAULT_DIR/$NAME.md"
+
+    if [ -d "$PROJECT_DIR" ]; then
+        echo "Project already exists"
+        exit 1
+    fi
+
+    cp -r "$TEMPLATE_DIR" "$PROJECT_DIR"
+
+    echo "Short project description" > "$PROJECT_DIR/.meta"
+
+    sed -i "s/PROJECT_NAME/$NAME/g" "$PROJECT_DIR/README.md"
+
+    git -C "$PROJECT_DIR" init
+    git -C "$PROJECT_DIR" add .
+    git -C "$PROJECT_DIR" commit -m "Initial project scaffold"
+
+    cat <<EOF > "$NOTE"
+# $NAME
+
+## Goal
+
+## Concepts
+
+## Commands Used
+
+## Lessons
+
+## Improvements
+EOF
+
+    echo "Project created at $PROJECT_DIR"
+    echo "Obsidian note created at $NOTE"
+
+    cd "$PROJECT_DIR"
+}
+
+open_project() {
+
+    NAME="$1"
+    PROJECT_DIR="$SKILLS_DIR/$NAME"
+
+    if [ ! -d "$PROJECT_DIR" ]; then
+        echo "Project does not exist"
+        exit 1
+    fi
+
+    "$WS4_LAUNCHER" "$PROJECT_DIR"
+}
+
+list_projects() {
+
+    for dir in "$SKILLS_DIR"/*; do
+
+        name=$(basename "$dir")
+
+        if [[ "$name" == "_template" || "$name" == "tools" ]]; then
+            continue
+        fi
+
+        desc=""
+
+        if [ -f "$dir/.meta" ]; then
+            desc=$(cat "$dir/.meta")
+        fi
+
+        printf "%-16s  %s\n" "$name" "$desc"
+
+    done | sort
+}
+
+preview_project() {
+
+    project="$1"
+    readme="$SKILLS_DIR/$project/README.md"
+
+    if [ -f "$readme" ]; then
+        glow "$readme"
+    else
+        echo "No README yet"
+    fi
+}
+
+tui() {
+
+    PROJECT=$(list_projects | fzf \
+        --layout=reverse \
+        --height=45% \
+        --border \
+        --margin=1 \
+        --padding=1 \
+        --prompt="bootstrap > " \
+        --header $'🐎 Cowboy Dev Range\n────────────────────────\nEnter: open project | Ctrl-C: quit\n' \
+        --preview "$0 __preview {1}" \
+        --preview-window=right:60% \
+    )
+
+    PROJECT=$(echo "$PROJECT" | awk '{print $1}')
+
+    [ -z "$PROJECT" ] && exit
+
+    open_project "$PROJECT"
+}
+
+if [ "$1" = "__preview" ]; then
+    preview_project "$2"
+    exit
+fi
+
+case "$1" in
+    new)
+        new_project "$2"
+        ;;
+    *)
+        tui
+        ;;
+esac

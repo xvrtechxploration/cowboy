@@ -1,0 +1,25 @@
+# --- Private AI / working notes ---
+CLAUDE.md
+.dev/
+
+# --- Local dev helpers ---
+.hidden/
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Build/temp
+dist/
+build/
