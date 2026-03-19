@@ -1,0 +1,6 @@
+[submodule "projects/wrangler"]
+	path = projects/wrangler
+	url = git@github.com:xvrtechxploration/wrangler.git
+[submodule "projects/lasso"]
+	path = projects/lasso
+	url = git@github.com:xvrtechxploration/lasso.git
