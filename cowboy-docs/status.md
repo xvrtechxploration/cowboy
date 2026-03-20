@@ -1,35 +1,31 @@
-# Cowboy Dev Range — Current Status
+# Cowboy — Current Status
 
-## Root Directory
-
-```
-~/dev/cowboy
-```
-
-Current structure:
+**Current structure:**
 
 ```
 cowboy/
 ├── _template
-├── tools
-│   └── bootstrap
-├── lasso
-├── wrangler
+├── cowboy-docs
+├── projects
+│   ├── lasso
+│   └── wrangler
+└── tools
+    └── bootstrap
 ```
 
 ---
 
-# Bootstrap CLI
+# Bootstrap
 
 Bootstrap is the **Cowboy project launcher**.
 
-Command:
+**Command:**
 
 ```
 bootstrap
 ```
 
-Features:
+**Features:**
 
 • interactive project selector
 • fuzzy search using `fzf`
@@ -69,14 +65,14 @@ When a project is selected:
 
 This launches:
 
-Workspace 4 layout
+Workspace layout
 
 ```
 ┌─────────┬───────────────┐
 │ Claude  │     nvim      │
 │ terminal│               │
-├─────────┼───────┬───────┤
-│ util1   │ util2 │       │
+│         ├───────┬───────┤
+│         │ util1 │ util2 │
 └─────────┴───────┴───────┘
 ```
 
@@ -84,42 +80,10 @@ Workspace 4 layout
 
 # Current Projects
 
-## lasso
-
-Purpose:
-
-System networking information CLI tool.
-
-Focus:
-
-• bash scripting
-• CLI parsing
-• linux networking commands
-
-Commands used:
-
-```
-ip
-hostnamectl
-resolvectl
-awk
-grep
-```
-
----
-
-## wrangler
-
-Purpose:
-
-Network automation framework.
-
-Focus:
-
-• Python
-• network automation
-• device inventory
-• SSH/API interaction
+| Name     | Description                       | Skills                              |
+| -------  | --------------------------------- | ----------------------------------- |
+| lasso    | Networking information CLI tool   | bash, networking, shell scripting   |
+| wrangler | Gather network device information | python, automation, networking, api |
 
 ---
 
@@ -127,11 +91,12 @@ Focus:
 
 Future Cowboy projects:
 
-```
-roundup      system monitoring CLI
-telegraph    API exploration tool
-bountyboard  task automation framework
-```
+| Name        | Description               | Skills |
+| ----------- | ------------------------- | ------ |
+| roundup     | system monitoring CLI     |        |
+| telegraph   | API exploration tool      |        |
+| bountyboard | task automation framework |        |
+
 
 ---
 
@@ -146,12 +111,10 @@ Projects should:
 
 Each project should include:
 
-```
-architecture.md
-roadmap.md
-README.md
-demo screenshots
-```
+- architecture.md
+- roadmap.md
+- README.md
+- demo screenshots
 
 ---
 
@@ -196,25 +159,3 @@ created date
 
 ---
 
-# Long-Term Vision
-
-Cowboy Dev Range becomes a **personal engineering lab** where each project teaches a focused set of skills:
-
-```
-bash
-python
-devops
-network automation
-API design
-systems programming
-```
-
-while building a real portfolio of tools.
-
----
-
-If you'd like, the **next thing I would strongly recommend** is something that will make this system dramatically more powerful:
-
-Turning `bootstrap` into a **full CLI tool with subcommands and TUI**, similar to tools like `kubectl` or `gh`.
-
-That only requires about **40–50 more lines of code**, but it makes the whole Cowboy environment feel like a real developer platform.
