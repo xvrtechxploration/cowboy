@@ -17,7 +17,7 @@ cowboy/
 
 # Bootstrap
 
-Bootstrap is the **Cowboy project launcher**.
+Bootstrap is a project launcher and creation tool for **Cowboy**.
 
 **Command:**
 
@@ -26,16 +26,15 @@ bootstrap
 ```
 
 **Features:**
-
-• interactive project selector
-• fuzzy search using `fzf`
-• README preview using `glow`
-• project descriptions from `.meta`
-• launches Hyprland workspace environment
+- interactive project selector
+- fuzzy search using `fzf`
+- README preview using `glow`
+- project descriptions from `.meta`
+- launches Hyprland workspace environment
 
 ---
 
-# Bootstrap Interface
+## Bootstrap TUI Interface
 
 TUI shows:
 
@@ -55,7 +54,8 @@ README.md rendered with glow
 
 ---
 
-# Project Launcher
+## Project Launcher
+> Opens an existing project in a development workspace
 
 When a project is selected:
 
@@ -65,7 +65,7 @@ When a project is selected:
 
 This launches:
 
-Workspace layout
+Workspace layout with all terminals in project directory
 
 ```
 ┌─────────┬───────────────┐
@@ -76,7 +76,37 @@ Workspace layout
 └─────────┴───────┴───────┘
 ```
 
+## Project Creation
+> Create a new project from _templates
+
+**Command:**
+```
+bootstrap new <project-name>
 ---
+
+**Creates a new project directory with templated documents:**
+
+```
+<project-name>/
+├── README.md
+├── architecture.md
+├── roadmap.md
+├── Makefile
+├── .gitignore
+├── .meta
+└── docs/
+    ├─ concepts.md
+    └── design-decicions.md
+
+**Initializes a gig repo for the project:**
+```
+git -C "$PROJECT_DIR" init
+git -C "$PROJECT_DIR" add .
+git -C "$PROJECT_DIR" commit -m "Initial project scaffold"
+```
+
+**Creates a <project-name>.md notes file in Obsidian vault**
+
 
 # Current Projects
 
