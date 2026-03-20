@@ -76,13 +76,15 @@ Workspace layout with all terminals in project directory
 └─────────┴───────┴───────┘
 ```
 
+---
+
 ## Project Creation
 > Create a new project from _templates
 
 **Command:**
 ```
 bootstrap new <project-name>
----
+```
 
 **Creates a new project directory with templated documents:**
 
@@ -97,8 +99,10 @@ bootstrap new <project-name>
 └── docs/
     ├─ concepts.md
     └── design-decicions.md
+```
 
 **Initializes a gig repo for the project:**
+
 ```
 git -C "$PROJECT_DIR" init
 git -C "$PROJECT_DIR" add .
