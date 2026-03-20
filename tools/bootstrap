@@ -2,7 +2,7 @@
 # bootstrap
 # Cowboy app project launcher
 
-SKILLS_DIR="$HOME/dev/cowboy"
+SKILLS_DIR="$HOME/dev/cowboy/projects"
 TEMPLATE_DIR="$SKILLS_DIR/_template"
 VAULT_DIR="$HOME/xvr-vault/dev"
 WS4_LAUNCHER="$HOME/dev/scripts/workspace-launchers/code.sh"
@@ -109,7 +109,7 @@ tui() {
         --margin=1 \
         --padding=1 \
         --prompt="bootstrap > " \
-        --header $'🐎 Cowboy Dev Range\n────────────────────────\nEnter: open project | Ctrl-C: quit\n' \
+        --header $'🐎 Cowboy Projects - "The Range"\n────────────────────────\nEnter: open project | Ctrl-C: quit\n' \
         --preview "$0 __preview {1}" \
         --preview-window=right:60% \
     )

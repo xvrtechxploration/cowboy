@@ -39,7 +39,7 @@ bootstrap
 TUI shows:
 
 ```
-🐎 Cowboy Dev Range
+🐎 Cowboy Projects - "The Range"
 ────────────────────────
 
 lasso        System Networking Info
